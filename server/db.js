@@ -12,7 +12,7 @@ const client = new MongoClient(uri, {
 
 export async function login(username, password) {
   const res = await client
-    .db("general")
+    .db("ecommerce")
     .collection("users")
     .findOne({ username, password });
   return [res != null, res];

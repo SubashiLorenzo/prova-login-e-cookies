@@ -35,6 +35,7 @@ app.get("/sessions", (req, res) => {
     res.status(200).json({ username: req.session.username });
   } else {
     res.status(401).json({ msg: "User did not log in" });
+    // req.session = null;
   }
 });
 
@@ -45,7 +46,16 @@ app.post("/sessions", async (req, res) => {
     req.session.username = req.body.username;
     res.json({ msg: "logged in", sessionID: req.sessionID });
   } else {
+    /*  req.session.logged = null;
+    req.session.username = null; */
     res.status(401).json({ msg: "Username or password not found" });
+  }
+});
+app.delete("/sessions", async (req, res) => {
+  if (exists) {
+    req.session.logged = false;
+    req.session.username = null;
+    res.json({ msg: "not logged in", sessionID: req.null });
   }
 });
 

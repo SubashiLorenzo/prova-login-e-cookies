@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Header from "./Header";
+import { useNavigate } from "react-router";
 export default function Login({ setVisibility }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   async function login() {
     const res = await fetch("http://localhost:3001/sessions", {
@@ -21,8 +23,10 @@ export default function Login({ setVisibility }) {
       setError(true);
       setErrorMessage(json.msg);
     } else {
+      navigate("/home");
       setError(false);
       setErrorMessage("");
+      console.log("ERRORE", setVisibility);
       setVisibility(true);
     }
   }

@@ -3,9 +3,10 @@ import Login from "./components/Login.js";
 import { useState } from "react";
 import Header from "./components/Header.js";
 function App() {
-  const [visibility, setVisibility] = useState(false);
+  console.log("APP", setVisibility);
   return (
     <div className="App">
+      PROVA
       <Header visibility={visibility} />
       <Login setVisibility={setVisibility} />
     </div>

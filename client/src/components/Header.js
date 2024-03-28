@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 export default function Header({ visibility }) {
   const [user, setUser] = useState("");
   const [userLogged, setUserLogged] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function username() {
@@ -18,13 +21,15 @@ export default function Header({ visibility }) {
     }
     username();
   }, [visibility]);
-
+  function handleClick() {
+    navigate("/");
+  }
   return (
     <div>
       {userLogged && (
         <div>
           <p>{user}</p>
-          <button>LOGOUT</button>
+          <button onClick={handleClick}>LOGOUT</button>
         </div>
       )}
     </div>
